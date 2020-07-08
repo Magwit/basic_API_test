@@ -3,7 +3,6 @@ Library        RequestsLibrary
 Library        Collections
 Library        JSONLibrary
 
-
 Resource       ../resources.robot
 
 *** Variables ***
@@ -23,14 +22,15 @@ Get_holiday_info
 
     # Assertions
 
+    # Assert successful response to the API call
     ${status_code}=         Convert To String      ${response.status_code}
     Should Be Equal         ${status_code}         200
 
-    # The header is a python dictionary. Collections Library is used to TK
+    # Return the content-type from the response header and assert that it is a json response
     ${contentTypeValue}=    Get From Dictionary    ${response.headers}        Content-Type
     Should Be Equal         ${contentTypeValue}    application/json
 
-    # Need to convert the json response body to string
+    # Convert the json response body to string and assert that Midsummer Day is in the response
     ${response_body}=       Convert To String      ${response.content}
     Should Contain          ${response_body}       Midsummer Day
 

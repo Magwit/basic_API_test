@@ -1,0 +1,1 @@
+A test project where Robot Framework is used to test Calendarific API. This is a practice project to try put the capabilities of Robot Framework.
